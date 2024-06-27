@@ -23,10 +23,8 @@ public class UrlController {
     @POST
     @Path("/shorten-url")
     public Response shortenUrl(ShortenUrlRequest request) {
-        return Response.ok(urlService.shortenUrl(
-                uriInfo.getRequestUri().getPath(),
-                request.url()
-        )).build();
+        var baseUrl = uriInfo.getAbsolutePath().toString();
+        return Response.ok(urlService.shortenUrl(baseUrl, request.url())).build();
     }
     
     @GET

@@ -6,7 +6,7 @@ import org.bson.codecs.pojo.annotations.BsonProperty;
 
 import java.time.LocalDateTime;
 
-@MongoEntity(database = "urls")
+@MongoEntity(database = "urls", collection = "urls")
 public class Url {
     @BsonId
     private String id;

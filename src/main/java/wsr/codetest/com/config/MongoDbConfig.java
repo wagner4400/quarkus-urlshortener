@@ -24,8 +24,8 @@ public class MongoDbConfig {
     MongoClient mongoClient;
     
     public void onStart(@Observes StartupEvent ev) {
-        MongoCollection<Document> collection = mongoClient.getDatabase(DATABASE).getCollection("urls");
+        MongoCollection<Document> collection = mongoClient.getDatabase(DATABASE).getCollection(DATABASE);
         IndexOptions indexOptions = new IndexOptions().expireAfter(EXPIRES_AFTER_SECONDS, TimeUnit.SECONDS);
-        collection.createIndex(Indexes.ascending("expiresAt"), indexOptions);
+        collection.createIndex(Indexes.ascending("expires_at"), indexOptions);
     }
 }
