@@ -1,4 +1,4 @@
-package wsr.codetest.com.model;
+package wsr.codetest.com.model.entity;
 
 import io.quarkus.mongodb.panache.common.MongoEntity;
 import org.bson.codecs.pojo.annotations.BsonId;
@@ -6,12 +6,13 @@ import org.bson.codecs.pojo.annotations.BsonProperty;
 
 import java.time.LocalDateTime;
 
-@MongoEntity(collection = "urls")
+@MongoEntity(database = "urls")
 public class Url {
     @BsonId
     private String id;
+    @BsonProperty(value = "full_url")
     private String fullUrl;
-    @BsonProperty
+    @BsonProperty(value = "expires_at")
     private LocalDateTime expiresAt;
     
     public Url() {

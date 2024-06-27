@@ -17,12 +17,15 @@ import java.util.concurrent.TimeUnit;
 public class MongoDbConfig {
     @ConfigProperty(name = "quarkus.mongodb.database")
     String DATABASE;
+    @ConfigProperty(name = "url.expires.after.seconds")
+    Long EXPIRES_AFTER_SECONDS;
+    
     @Inject
     MongoClient mongoClient;
     
     public void onStart(@Observes StartupEvent ev) {
         MongoCollection<Document> collection = mongoClient.getDatabase(DATABASE).getCollection("urls");
-        IndexOptions indexOptions = new IndexOptions().expireAfter(60L, TimeUnit.SECONDS);
+        IndexOptions indexOptions = new IndexOptions().expireAfter(EXPIRES_AFTER_SECONDS, TimeUnit.SECONDS);
         collection.createIndex(Indexes.ascending("expiresAt"), indexOptions);
     }
 }
