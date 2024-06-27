@@ -6,7 +6,7 @@ import jakarta.ws.rs.core.Response;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import wsr.codetest.com.model.dto.ShortenUrlResponse;
-import wsr.codetest.com.model.entity.Url;
+import wsr.codetest.com.model.entity.UrlEntity;
 import wsr.codetest.com.repository.UrlRepository;
 
 import java.net.URI;
@@ -25,7 +25,7 @@ public class UrlService {
             id = RandomStringUtils.randomAlphanumeric(5, 10);
         } while (!urlRepository.findByIdOptional(id).isEmpty());
         
-        var urlEntity = new Url(id, originalUrl, LocalDateTime.now().plusSeconds(EXPIRES_AFTER_SECONDS));
+        var urlEntity = new UrlEntity(id, originalUrl, LocalDateTime.now().plusSeconds(EXPIRES_AFTER_SECONDS));
         urlRepository.persist(urlEntity);
         
         var redirectUrl = baseUrl.replace("shorten-url", id);

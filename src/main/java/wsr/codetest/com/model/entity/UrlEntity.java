@@ -7,7 +7,7 @@ import org.bson.codecs.pojo.annotations.BsonProperty;
 import java.time.LocalDateTime;
 
 @MongoEntity(database = "urls", collection = "urls")
-public class Url {
+public class UrlEntity {
     @BsonId
     private String id;
     @BsonProperty(value = "full_url")
@@ -15,10 +15,10 @@ public class Url {
     @BsonProperty(value = "expires_at")
     private LocalDateTime expiresAt;
     
-    public Url() {
+    public UrlEntity() {
     }
     
-    public Url(String id, String fullUrl, LocalDateTime expiresAt) {
+    public UrlEntity(String id, String fullUrl, LocalDateTime expiresAt) {
         this.id = id;
         this.fullUrl = fullUrl;
         this.expiresAt = expiresAt;
