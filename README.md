@@ -39,6 +39,18 @@ HTTP/1.1 200 OK
   Original URL saved in the database. If the URL is not found in the database, return the code
   status `HTTP 404 (Not Found)`.
 
+## Configuration
+
+You need to create a file named .env in the root of the project with the following variables:
+
+```shell  
+MONGO_USER=YOUR_USERNAME
+MONGO_PASSWORD=YOUR_PASSWORD
+```
+
+## Swagger
+<http://localhost:8080/q/swagger-ui/>
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
